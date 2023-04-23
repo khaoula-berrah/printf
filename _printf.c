@@ -18,6 +18,8 @@ int _printf(const char *format, ...)
 		switch (format[i])
 		{
 			case '%':
+				if (flag == 1)
+
 				flag = 1;
 				break;
 			case 'c':
@@ -42,6 +44,7 @@ int _printf(const char *format, ...)
 			default:
 				flag = 0;
 				_putchar(format[i]);
+				i++;
 				continue;
 		}
 		i++;
