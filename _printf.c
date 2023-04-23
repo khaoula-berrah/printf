@@ -22,13 +22,10 @@ int _printf(const char *format, ...)
 				break;
 			case 'c':
 				if (flag == 1)
-				{
 					_putchar(va_arg(args, int));
-				}
 				else
 					_putchar(format[i]);
 				break;
-
 			case 's':
 				if (flag == 1)
 				{
@@ -45,12 +42,10 @@ int _printf(const char *format, ...)
 			default:
 				flag = 0;
 				_putchar(format[i]);
-				i++;
 				continue;
 		}
 		i++;
 	}
-	_putchar('\n');
 	va_end(args);
 	return (i);
 }
