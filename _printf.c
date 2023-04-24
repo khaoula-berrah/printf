@@ -23,17 +23,17 @@ int _printf(const char *format, ...)
 	{
 		if (format[i] != '%')
 		{
-			buffer[buff_ind++] = format[i];
+			buffer[buffer_ind++] = format[i];
 			if (buffer_ind == BUFF_SIZE)
-				prnt_buffer(buffer, &buffer_ind);
+				print_buffer(buffer, &buffer_ind);
 			prnted_chaars++;
 		}
 		else
 		{
 			print_buffer(buffer, &buffer_ind);
 			flg = get_flags(format, &i);
-			widt = get_width(format, &i, list);
-			prec = get_precision(format, &i, list);
+			widt = get_width(format, &i, lst);
+			prec = get_precision(format, &i, lst);
 			size = get_size(format, &i);
 			++i;
 			prnted = handle_print(format, &i, lst, buffer,
