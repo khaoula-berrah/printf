@@ -1,5 +1,6 @@
 #include <stdarg.h>
 #include <stdio.h>
+#include "main.h"
 void print_bfr(char bfr[], int *bfr_ind);
 /**
   * _printf - Prints formatted output to stdout
@@ -11,7 +12,7 @@ int _printf(const char *format, ...)
 	int i, prnted = 0, print_chars = 0;
 	int flg, widt, prec, size, bfr_ind = 0;
 	va_list args;
-	char bfr[BUFF_SIZE];
+	char bfr[BUFSIZ]
 
 	va_start(args, format);
 	for (i = 0; format[i] != '\0'; i++)
@@ -19,7 +20,7 @@ int _printf(const char *format, ...)
 		if (format[i] != '%')
 		{
 			bfr[bfr_ind++] = format[i];
-			if (bfr_ind == BUFF_SIZE)
+			if (bfr_ind == BUFSIZ)
 				print_bfr(bfr, &bfr_ind);
 			print_chars++;
 		}

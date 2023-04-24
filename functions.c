@@ -1,18 +1,36 @@
 #include <stdarg.h>
 #include <stdio.h>
+#include "main.h"
+/* print string */
 /**
-  * print_string - Prints formatted output to stdout
-  * @format: Format string containing zero or more directives
+  * print_string - Prints a string
+  * @args: List a of arguments
+  * @bfr: Buffer array to handle print
+  * @flg:  Calculates active flags
+  * widt: get width
+  * @prec: Precision specification
+  * @size: Size specifier
   * Return: Number of characters printed
   */
-int print_string(const char *format, ...)
+int print_string(va_list args, char bfr[],
+	int flg, int widt, int prec, int size)
 {
-	va_list args;
-	int print_stg;
+	int lenn;
+	char *sttr = va_arg(args, char *);
 
-	va_start(args, format);
-	print_stg = print_string(format, args);
-	va_end(args);
+
+	UNUSED(bfr);
+	UNUSED(flg);
+	UNUSED(widt);
+	UNUSED(prec);
+	UNUSED(size);
+
+	if (sttr == NULL)
+		sttr = "(null)";
+	if (prec >= 6)
+		sttr = "      ";
+
+
 
 	return (print_stg);
 }
