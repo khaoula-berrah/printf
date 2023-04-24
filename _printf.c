@@ -36,7 +36,8 @@ int _printf(const char *format, ...)
 				flag = 0;
 				break;
 			case 's':
-				if (flag == 1)
+				len+= print_string(va_arg(args, char*), flag, format[i]);
+				/**if (flag == 1)
 				{
 					str = va_arg(args, char*);
 					while (*str != '\0')
@@ -50,7 +51,7 @@ int _printf(const char *format, ...)
 				{
 					_putchar(format[i]);
 					len++;
-				}
+				}*/
 				flag = 0;
 				break;
 			default:
@@ -63,5 +64,34 @@ int _printf(const char *format, ...)
 		i++;
 	}
 	va_end(args);
+	return (len);
+}
+/**
+ * print_string - print sting using flag
+ * @str: the string
+ * @format: character
+ * @flag: the flagindex
+ * Return: len
+ */
+int print_string(char *str, int flag, char form)
+{
+	int len = 0;
+	char *string;
+
+	if (flag == 1)
+	{
+		string = str;
+		while (*string != '\0')
+		{
+			_putchar(*string);
+			len++;
+			string++;
+		}
+	}
+	else
+	{
+		_putchar(form);
+		len++;
+	}
 	return (len);
 }
