@@ -1,6 +1,5 @@
 #include "main.h"
 #include <stdarg.h>
-
 /**
  * _printf - produces output according to a format.
  * @format: the string uesed to print
@@ -32,6 +31,7 @@ int _printf(const char *format, ...)
 					_putchar(va_arg(args, int));
 				else
 					_putchar(format[i]);
+
 				len++;
 				flag = 0;
 				break;
