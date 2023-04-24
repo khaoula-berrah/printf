@@ -43,7 +43,8 @@ int _printf(const char *format, ...)
 				flag = 0;
 				len++;
 				_putchar(format[i]);
-				break;
+				i++;
+				continue;
 		}
 		i++;
 	}
