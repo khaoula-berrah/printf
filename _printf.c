@@ -25,11 +25,6 @@ int _printf(const char *format, ...)
 					len++;
 					break;
 				}
-				// if (format[i + 1] != 'c' && format[i + 1] != 's')
-				// {
-				// 	_putchar('%');
-				// 	break;
-				// }
 				flag = 1;
 				break;
 			case 'c':
