@@ -1,106 +1,96 @@
-<<<<<<< HEAD
 #include "main.h"
-#include <stdarg.h>
-/**
- * _printf - produces output according to a format.
- * @format: the string uesed to print
- * Return: the number of characters printed
- */
-int _printf(const char *format, ...)
-{
-	int i = 0, flag = 0, len = 0;
-	va_list args;
-	char *str;
-
-	va_start(args, format);
-	while (format[i])
-	{
-		switch (format[i])
-		{
-			case '%':
-				if (flag == 1 && format[i + 1] != 's' && format[i + 1] != 'c')
-				{
-					_putchar('%'), flag = 0, len++; 
-					break;
-				}
-				flag = 1;
-				break;
-			case 'c':if (flag == 1)
-					_putchar(va_arg(args, int));
-				else
-					_putchar(format[i]);
-				len++, flag = 0;
-				break;
-			case 's':
-				if (flag == 1)
-				{
-					str = va_arg(args, char*);
-					while (*str != '\0')
-						_putchar(*str), len++, str++;
-				}
-				else
-					_putchar(format[i]), len++;
-				flag = 0;
-				break;
-			default:flag = 0, len++, _putchar(format[i++]);
-				continue;
-		}
-		i++;
-	}
-	va_end(args);
-	return (len);
-=======
-#include <stdarg.h>
 #include <stdio.h>
-#include "main.h"
-void print_bfr(char bfr[], int *bfr_ind);
+#include <stdlib.h>
+#include <stdarg.h>
+
 /**
-  * _printf - Prints formatted output to stdout
-  * @format: Format string containing zero or more directives
-  * Return: Number of characters printed
+  * print_char - print character to a buffer.
+  * @types: a va_list of arguments
+  * @buffer: buffer to print the character to
+  * @flags: flags used to format the output
+  * @width: field width to use when formatting the output
+  * @precision: precision to use when formatting the output
+  * @size: maximum number of bytes to print
+  * Return: number of bytes printed to the buffer
   */
+
+/*print_charactere*/
+
+int print_char(char types, char buffer[],
+		int flags, int width, int precision, int size)
+{
+	int i = 0;
+	char n = ' ';
+	/*char buffer[BUFF_SIZe]*/
+
+	UNUSED(precision);
+	UNUSED(size);
+
+	if (flags & F_ZERO)
+		n = '0';
+
+	buffer[i++] = types;
+	buffer[i] = '\0';
+
+	if (width > 1)
+	{
+		buffer[BUFF_SIZE - 1] = '\0';
+		for (i = 0; i < width - 1; i++)
+			buffer[BUFF_SIZE - i - 2] = n;
+
+		if (flags & F_MINUS)
+			return (write(1, &buffer[0], 1) +
+					write(1, &buffer[BUFF_SIZE - i - 1], width - 1));
+		else
+			return (write(1, &buffer[BUFF_SIZE - i - 1], width - 1) +
+					write(1, &buffer[0], 1));
+	}
+
+	return (write(1, &buffer[0], 1));
+
+
+}
+
+/**
+  * _printf - custom printf function
+  * @format: string literal containing format specifiers
+  * Return: number of characters printed
+  */
+
+
 int _printf(const char *format, ...)
 {
-	int i, prnted = 0, print_chars = 0;
-	int flg, widt, prec, size, bfr_ind = 0;
 	va_list args;
-	char bfr[BUFSIZ]
+	int lengt;
+	int num_printed = 0;
 
 	va_start(args, format);
-	for (i = 0; format[i] != '\0'; i++)
+	while (*format)
 	{
-		if (format[i] != '%')
+		if (*format == '%')
 		{
-			bfr[bfr_ind++] = format[i];
-			if (bfr_ind == BUFSIZ)
-				print_bfr(bfr, &bfr_ind);
-			print_chars++;
+			format++;
+			switch (*format)
+			{
+				case 'd':
+				case 'i':
+					lengt = va_arg(args, int);
+					num_printed += printf("%d", lengt);
+					break;
+					default:
+					putchar('%');
+					putchar(*format);
+					num_printed += 2;
+					break;
+			}
 		}
 		else
 		{
-			print_bfr(bfr, &bfr_ind);
-			flg = get_flags(format, &i);
-			widt = get_width(format, &i, args);
-			prec = get_precision(format, &i, args);
-			size = get_size(format, &i);
-			++i;
-			prnted = handle_print(format, &i, args, bfr, flg, widt, prec, size);
-			if (prnted == -1)
-				return (-1);
-			print_chars += prnted;
+			putchar(*format);
+			num_printed++;
 		}
+		format++;
 	}
-	print_bfr(bfr, &bfr_ind);
-}
-/**
-  * print_bfr - Prints the contents of the buffer
-  * @bfr: Array
-  * @bfr_ind: represents the length.
-  */
-void print_bfr(char bfr[], int *bfr_ind)
-{
-	if (*bfr_ind > 0)
-		write(1, &bfr[0], *bfr_ind);
-	*bfr_ind = 0;
->>>>>>> origin/khaoula_printf_branch
+	va_end(args);
+	return (num_printed);
 }
