@@ -17,7 +17,7 @@ int _printf(const char *format, ...)
 		switch (format[i])
 		{
 			case '%':
-				if (flag == 1)
+				if (flag == 1 && format[i + 1] != 's' && format[i + 1] != 'c')
 				{
 					_putchar('%');
 					flag = 0;
