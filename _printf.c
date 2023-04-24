@@ -35,9 +35,9 @@ int _printf(const char *format, ...)
 				len++;
 				break;
 			case 's':
-				str = va_arg(args, char*);
 				if (flag == 1)
 				{
+					str = va_arg(args, char*);
 					while (*str != '\0')
 					{
 						_putchar(*str);
