@@ -2,95 +2,64 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdarg.h>
+#include <stddef.h>
+#include <alloca.h>
 
+void print_buffer(char buffer[], int *buff_ind);
 /**
-  * print_char - print character to a buffer.
-  * @types: a va_list of arguments
+  * print_buffer - print character to a buffer.
   * @buffer: buffer to print the character to
-  * @flags: flags used to format the output
-  * @width: field width to use when formatting the output
-  * @precision: precision to use when formatting the output
-  * @size: maximum number of bytes to print
-  * Return: number of bytes printed to the buffer
+  * @buff_ind: the represents the length.
   */
-
-/*print_charactere*/
-
-int print_char(char types, char buffer[],
-		int flags, int width, int precision, int size)
+void print_buffer(char buffer[], int *buff_ind)
 {
-	int i = 0;
-	char n = ' ';
-	/*char buffer[BUFF_SIZe]*/
+	if (*buff_ind > 0)
+		write(1, &buffer[0], *buff_ind);
 
-	UNUSED(precision);
-	UNUSED(size);
-
-	if (flags & F_ZERO)
-		n = '0';
-
-	buffer[i++] = types;
-	buffer[i] = '\0';
-
-	if (width > 1)
-	{
-		buffer[BUFF_SIZE - 1] = '\0';
-		for (i = 0; i < width - 1; i++)
-			buffer[BUFF_SIZE - i - 2] = n;
-
-		if (flags & F_MINUS)
-			return (write(1, &buffer[0], 1) +
-					write(1, &buffer[BUFF_SIZE - i - 1], width - 1));
-		else
-			return (write(1, &buffer[BUFF_SIZE - i - 1], width - 1) +
-					write(1, &buffer[0], 1));
-	}
-
-	return (write(1, &buffer[0], 1));
-
-
+	*buff_ind = 0;
 }
-
 /**
   * _printf - custom printf function
   * @format: string literal containing format specifiers
   * Return: number of characters printed
   */
-
-
 int _printf(const char *format, ...)
 {
-	va_list args;
-	int lengt;
-	int num_printed = 0;
+	int i, prnted = 0, prnted_chaars = 0;
+	int flg, widt, prec, size, buffer_ind = 0;
+	va_list lst;
+	char buffer[BUFF_SIZE];
 
-	va_start(args, format);
-	while (*format)
+	if (format == NULL)
+		return (-1);
+
+	va_start(lst, format);
+
+	for (i = 0; format && format[i] != '\0'; i++)
 	{
-		if (*format == '%')
+		if (format[i] != '%')
 		{
-			format++;
-			switch (*format)
-			{
-				case 'd':
-				case 'i':
-					lengt = va_arg(args, int);
-					num_printed += printf("%d", lengt);
-					break;
-					default:
-					putchar('%');
-					putchar(*format);
-					num_printed += 2;
-					break;
-			}
+			buffer[buffer_ind++] = format[i];
+			if (buffer_ind == BUFF_SIZE)
+				print_buffer(buffer, &buffer_ind);
+			prnted_chaars++;
 		}
 		else
 		{
-			putchar(*format);
-			num_printed++;
+			print_buffer(buffer, &buffer_ind);
+			flg = get_flags(format, &i);
+			widt = get_width(format, &i, lst);
+			prec = get_precision(format, &i, lst);
+			size = get_size(format, &i);
+			++i;
+			prnted = handle_print(format, &i, lst, buffer,
+				flg, widt, prec, size);
+			if (prnted == -1)
+				return (-1);
+			prnted_chaars += prnted;
 		}
-		format++;
 	}
-	va_end(args);
-	return (num_printed);
+	print_buffer(buffer, &buffer_ind);
+	va_end(lst);
+	return (prnted_chaars);
 }
