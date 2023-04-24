@@ -33,7 +33,7 @@ int _printf(const char *format, ...)
 					_putchar(format[i]);
 
 				len++;
-				//flag = 0;
+				/*flag = 0;*/
 				break;
 			case 's':
 				if (flag == 1)
@@ -51,7 +51,7 @@ int _printf(const char *format, ...)
 					_putchar(format[i]);
 					len++;
 				}
-				//flag = 0;
+				/*flag = 0;*/
 				break;
 			default:
 				flag = 0;
