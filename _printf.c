@@ -8,7 +8,7 @@
  */
 int _printf(const char *format, ...)
 {
-	int len = 0, i = 0, flag = 0;
+	int i = 0, flag = 0, len = 0;
 	va_list args;
 	char *str;
 
