@@ -11,16 +11,14 @@
 int print_string(char *str, int flag, char form)
 {
 	int len = 0;
-	char *string;
 
 	if (flag == 1)
 	{
-		string = str;
-		while (*string != '\0')
+		while (*str != '\0')
 		{
-			_putchar(*string);
+			_putchar(*str);
 			len++;
-			string++;
+			str++;
 		}
 	}
 	else
