@@ -8,7 +8,7 @@
  */
 int _printf(const char *format, ...)
 {
-	unsigned int i = 0, flag = 0, len = 0;
+	unsigned int i = 0, flag = 0, len = 0, char_index = 0, str_index = 0;
 	va_list args;
 	char *str;
 
@@ -28,14 +28,18 @@ int _printf(const char *format, ...)
 				flag = 1;
 				break;
 			case 'c':
-				if (flag == 1)
+				if (flag == 1 && str_index == 0)
+				{
 					_putchar(va_arg(args, int));
+					char_index = 1;
+				}
 				else
 					_putchar(format[i]);
 				len++;
+				str_index = 0;
 				break;
 			case 's':
-				if (flag == 1)
+				if (flag == 1 && char_index == 0)
 				{
 					str = va_arg(args, char*);
 					while (*str != '\0')
@@ -44,15 +48,19 @@ int _printf(const char *format, ...)
 						len++;
 						str++;
 					}
+					str_index = 1;
 				}
 				else
 				{
 					_putchar(format[i]);
 					len++;
 				}
+				char_index = 0;
 				break;
 			default:
 				flag = 0;
+				char_index = 0;
+				str_index = 0;
 				len++;
 				_putchar(format[i]);
 				i++;
