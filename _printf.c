@@ -8,7 +8,7 @@
  */
 int _printf(const char *format, ...)
 {
-	unsigned int len = 0, i = 0, flag = 0;
+	int len = 0, i = 0, flag = 0;
 	va_list args;
 	char *str;
 
@@ -32,6 +32,7 @@ int _printf(const char *format, ...)
 					_putchar(va_arg(args, int));
 				else
 					_putchar(format[i]);
+
 				len++;
 				flag = 0;
 				break;
