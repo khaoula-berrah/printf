@@ -19,45 +19,29 @@ int _printf(const char *format, ...)
 			case '%':
 				if (flag == 1 && format[i + 1] != 's' && format[i + 1] != 'c')
 				{
-					_putchar('%');
-					flag = 0;
-					len++;
+					_putchar('%'), flag = 0, len++; 
 					break;
 				}
 				flag = 1;
 				break;
-			case 'c':
-				if (flag == 1)
+			case 'c':if (flag == 1)
 					_putchar(va_arg(args, int));
 				else
 					_putchar(format[i]);
-
-				len++;
-				flag = 0;
+				len++, flag = 0;
 				break;
 			case 's':
 				if (flag == 1)
 				{
 					str = va_arg(args, char*);
 					while (*str != '\0')
-					{
-						_putchar(*str);
-						len++;
-						str++;
-					}
+						_putchar(*str), len++, str++;
 				}
 				else
-				{
-					_putchar(format[i]);
-					len++;
-				}
+					_putchar(format[i]), len++;
 				flag = 0;
 				break;
-			default:
-				flag = 0;
-				len++;
-				_putchar(format[i]);
-				i++;
+			default:flag = 0, len++, _putchar(format[i++]);
 				continue;
 		}
 		i++;
