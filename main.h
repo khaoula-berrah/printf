@@ -14,7 +14,7 @@
 #define F_HASH 8
 #define F_SPACE 16
 
-/* SIZES */
+/* Sises */
 #define S_LONG 2
 #define S_SHORT 1
 

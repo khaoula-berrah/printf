@@ -158,7 +158,7 @@ int print_binary(va_list types, char buffer[],
 	UNUSED(size);
 
 	nnn = va_arg(types, unsigned int);
-	mm = 2147483648; /* (2 ^ 31) */
+	mm = 2147483648;
 	a[0] = nnn / mm;
 	for (i = 1; i < 32; i++)
 	{
