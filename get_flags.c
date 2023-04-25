@@ -7,6 +7,8 @@
   */
 int get_flags(const char *format, int *i)
 {
+	/* - + 0 # ' ' */
+	/* 1 2 4 8  16 */
 	int n, cur_i;
 	int flg = 0;
 	const char FLAGS_CH[] = {'-', '+', '0', '#', ' ', '\0'};
