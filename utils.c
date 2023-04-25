@@ -71,12 +71,12 @@ long int convert_size_number(int num, int size)
  * @size: the number indicating the type to be casted.
  * Return: the casted value of numero.
  */
-int convert_size_unsgnd(int num, int size)
+long int convert_size_unsgnd(long int num, int size)i
 {
 	if (size == S_LONG)
 		return (num);
 	else if (size == S_SHORT)
-		return ((unsigned short)num);
+		return ((short)num);
 
 	return ((int)num);
 }
