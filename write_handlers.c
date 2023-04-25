@@ -73,10 +73,10 @@ int write_number(int is_negative, int ind, char buffer[],
 }
 
 /**
- * write_num - Write a number using a bufffer
+ * write_num - the write a number using a bufffer.
  * @ind: Index at which the number starts on the buffer
- * @buffer: Buffer
- * @flags: Flags
+ * @buffer: the buffer specifier.
+ * @flags: the flags specifier.
  * @width: width
  * @prec: Precision specifier
  * @length: Number length
