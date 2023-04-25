@@ -1,5 +1,7 @@
 #include "main.h"
 
+/************************* PRINT CHAR *************************/
+
 /**
  * print_char - Prints a single character to the buffer.
  * @types: va_list containing the character to be printed.
@@ -17,6 +19,7 @@ int print_char(va_list types, char buffer[],
 
 	return (handle_write_char(k, buffer, flags, width, precision, size));
 }
+/************************* PRINT A STRING *************************/
 /**
  * print_string - Prints a string to the buffer.
  * @types: va_list containing the string to be printed.
@@ -71,6 +74,7 @@ int print_string(va_list types, char buffer[],
 
 	return (write(1, sttr, lent));
 }
+/************************* PRINT PERCENT SIGN *************************/
 /**
  * print_percent - Prints a percent to the buffer
  * @types: va_list containing the string to be printed.
@@ -92,6 +96,7 @@ int print_percent(va_list types, char buffer[],
 	UNUSED(size);
 	return (write(1, "%%", 1));
 }
+/************************* PRINT INT *************************/
 /**
  * print_int - the print int to the buffer
  * @types: va_list containing the string to be printed.
@@ -134,6 +139,7 @@ int print_int(va_list types, char buffer[],
 
 	return (write_number(iss_negative, i, buffer, flags, width, precision, size));
 }
+/************************* PRINT BINARY *************************/
 /**
  * print_binary - the prints an unsigned number for buffer.
  * @types: va_list containing the string to be printed.

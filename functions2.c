@@ -1,5 +1,6 @@
 #include "main.h"
 
+/****************** PRINT POINTER ******************/
 /**
  * print_pointer - the prints value of a pointer variable to the buffer.
  * @types: va_list containing the string to be printed.
@@ -49,6 +50,7 @@ int print_pointer(va_list types, char buffer[],
 	return (write_pointer(buffer, iind, lent,
 		width, flags, pdd, extr_c, pdd_start));
 }
+/************************* PRINT NON PRINTABLE *************************/
 /**
  * print_non_printable - prints ascii in hexa of non printable characters
  * @types: va_list containing the string to be printed.
@@ -87,6 +89,7 @@ int print_non_printable(va_list types, char buffer[],
 
 	return (write(1, buffer, i + offet));
 }
+/************************* PRINT REVERSE ***********************/
 /**
  * print_reverse - the prints reverse string  to the buffer.
  * @types: va_list containing the string to be printed.
@@ -129,6 +132,7 @@ int print_reverse(va_list types, char buffer[],
 	}
 	return (count);
 }
+/************************* PRINT A STRING IN ROT13 *************************/
 /**
  * print_rot13string - the print a string in rot13 to the buffer.
  * @types: va_list containing the string to be printed..
