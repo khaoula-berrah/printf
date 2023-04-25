@@ -70,7 +70,7 @@ int print_non_printable(va_list types, char buffer[],
 	UNUSED(precision);
 	UNUSED(size);
 
-	if (str == NULL)
+	if (sttr == NULL)
 		return (write(1, "(null)", 6));
 
 	while (sttr[i] != '\0')

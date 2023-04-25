@@ -69,7 +69,7 @@ int write_number(int is_negative, int ind, char buffer[],
 		extr_ch = ' ';
 
 	return (write_num(ind, buffer, flags, width, precision,
-		length, padd, extr_ch));
+		lent, pdd, extr_ch));
 }
 
 /**
@@ -115,7 +115,7 @@ int write_num(int ind, char buffer[],
 		{
 			if (extra_c)
 				buffer[--ind] = extra_c;
-			return (write(1, &buffer[1], i - 1) + write(1, &buffer[ind], length));
+			return (write(1, &buffer[1], ii - 1) + write(1, &buffer[ind], length));
 		}
 		else if (!(flags & F_MINUS) && padd == '0')
 		{
@@ -206,7 +206,7 @@ int write_pointer(char buffer[], int ind, int length,
 
 	if (width > length)
 	{
-		for (ii = 3; i < width - length + 3; ii++)
+		for (ii = 3; ii < width - length + 3; ii++)
 			buffer[ii] = padd;
 		buffer[ii] = '\0';
 		if (flags & F_MINUS && padd == ' ')
