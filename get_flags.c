@@ -15,7 +15,7 @@ int get_flags(const char *format, int *i)
 	for (cur_i = *i + 1; format[cur_i] != '\0'; cur_i++)
 	{
 		for (n = 0; FLAGS_CH[n] != '\0'; n++)
-			if (format[curr_i] == FLAGS_CH[n])
+			if (format[cur_i] == FLAGS_CH[n])
 			{
 				flg |= FLAGS_ARR[n];
 				break;
