@@ -55,7 +55,7 @@ int is_digit(char c)
  * @size: the number indicating the type to be casted to convert.
  * Return: the casted value of numero
  */
-long int convert_size_number(int num, int size)
+long int convert_size_number(long int num, int size)
 {
 	if (size == S_LONG)
 		return (num);
@@ -71,7 +71,7 @@ long int convert_size_number(int num, int size)
  * @size: the number indicating the type to be casted.
  * Return: the casted value of numero.
  */
-long int convert_size_unsgnd(long int num, int size)i
+long int convert_size_unsgnd(long int num, int size)
 {
 	if (size == S_LONG)
 		return (num);
