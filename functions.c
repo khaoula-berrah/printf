@@ -111,7 +111,7 @@ int print_int(va_list types, char buffer[],
 	int flags, int width, int precision, int size)
 {
 	int i = BUFF_SIZE - 2;
-	int iss_negative = 0;
+	int is_negative = 0;
 	long int nn = va_arg(types, long int);
 	unsigned long int nm;
 
@@ -126,7 +126,7 @@ int print_int(va_list types, char buffer[],
 	if (nn < 0)
 	{
 		nm = (unsigned long int)((-1) * nn);
-		iss_negative = 1;
+		is_negative = 1;
 	}
 
 	while (nm > 0)
@@ -137,7 +137,7 @@ int print_int(va_list types, char buffer[],
 
 	i++;
 
-	return (write_number(iss_negative, i, buffer, flags, width, precision, size));
+	return (write_number(is_negative, i, buffer, flags, width, precision, size));
 }
 /************************* PRINT BINARY *************************/
 /**
