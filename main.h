@@ -43,7 +43,7 @@ int _printf(const char *format, ...);
 int handle_print(const char *fmt, int *i,
 va_list list, char buffer[], int flags, int width, int precision, int size);
 
-/*_______________________________________ FUNCTIONS __________________________*/
+/*_________________ FUNCTIONS ____________*/
 
 /*________print chars and strings _____________*/
 int print_char(va_list types, char buffer[],
