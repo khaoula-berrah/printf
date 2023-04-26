@@ -43,7 +43,10 @@ int _printf(const char *format, ...);
 int handle_print(const char *fmt, int *i,
 va_list list, char buffer[], int flags, int width, int precision, int size);
 
+<<<<<<< HEAD
 /*_________________ FUNCTIONS ____________*/
+=======
+>>>>>>> db79f6a04f9d64ad8edcea72917a02ffb07f58a6
 
 /*________print chars and strings _____________*/
 int print_char(va_list types, char buffer[],
@@ -75,7 +78,7 @@ int print_non_printable(va_list types, char buffer[],
 	int flags, int width, int precision, int size);
 
 /* Funcion to print memory address */
-int print_pointer(va_list types, char buffer[],
+int print_pointer(va_list types, char buffer[], 
 	int flags, int width, int precision, int size);
 
 /* handle other specifiers */
