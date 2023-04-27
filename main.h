@@ -18,6 +18,9 @@
 #define S_LONG 2
 #define S_SHORT 1
 
+#include <stdarg.h>
+#include <stdio.h>
+#include <unistd.h>
 /**
  * struct fmt - Struct op
  *
